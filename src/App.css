@@ -102,3 +102,9 @@ li button:hover {
   background-color: white;
   cursor: pointer;
 }
+
+.current-time {
+  font-size: 14px; /* Adjust the font size as needed */
+  color: #333; /* Change color as per your theme */
+  margin-right: 20px; /* Spacing between the time and the title */
+}
