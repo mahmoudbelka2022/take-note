@@ -1,38 +1,104 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%; /* Make sure html and body take full height */
+  margin: 0; /* Remove default margin */
+}
+
+body {
+  background-image: url('/public/note2.png'); /* Add your background image */
+  background-size: cover; /* Cover the entire page */
+  background-position: center; /* Center the background */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+}
+
 .App {
+  max-width: 800px; /* Increased max width */
+  margin: 50px auto; /* Centered with margin */
+  padding: 40px; /* Increased padding for more space inside */
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white for contrast */
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Slightly more prominent shadow */
+}
+
+
+h1 {
   text-align: center;
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.input-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 70%;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #66afe9;
+  outline: none;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #5cb85c;
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #4cae4c;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+li button {
+  background-color: #d9534f;
+}
+
+li button:hover {
+  background-color: #c9302c;
+}
+
+.settings {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+
+.settings select {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
 }
