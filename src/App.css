@@ -108,3 +108,8 @@ li button:hover {
   color: #333; /* Change color as per your theme */
   margin-right: 20px; /* Spacing between the time and the title */
 }
+
+input[type="datetime-local"] {
+  font-size: 16px; /* Make it larger for mobile */
+  width: 100%; /* Full width to ensure it fits within the viewport */
+}

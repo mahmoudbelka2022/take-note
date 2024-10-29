@@ -12,6 +12,9 @@ function App() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
+  const [noteDate, setNoteDate] = useState('');
+  const [noteTime, setNoteTime] = useState('');
+
 
   // Update current time every second
  useEffect(() => {
@@ -48,33 +51,55 @@ function App() {
   }, [notes, username, isLoggedIn]);
 
   const handleAddNote = () => {
-    if (noteInput) {
-      let formattedTimestamp = "";
+if (noteInput) {
+ let formattedTimestamp = "";
 
-      if (noteDateTime) {
-        const dateObj = new Date(noteDateTime);
+ if (noteDate && noteTime) {
+   formattedTimestamp = `${noteDate} ${noteTime}`;
+ } else {
+   formattedTimestamp = new Date().toLocaleString(); // Default to current date and time
+ }
 
-        // Check if the date object is valid
-        if (!isNaN(dateObj.getTime())) {
-          formattedTimestamp = dateObj.toLocaleString();
-        } else {
-          console.log("Invalid datetime input"); // Debug log
-          formattedTimestamp = "Invalid Date";
-        }
-      } else {
-        formattedTimestamp = new Date().toLocaleString(); // Default to current date and time
-      }
+ const newNote = {
+   text: noteInput,
+   timestamp: formattedTimestamp,
+ };
 
-      const newNote = {
-        text: noteInput,
-        timestamp: formattedTimestamp,
-      };
+ setNotes((prevNotes) => [...prevNotes, newNote]);
+ setNoteInput('');
+ setNoteDate('');
+ setNoteTime('');
+}
+};
 
-      setNotes((prevNotes) => [...prevNotes, newNote]);
-      setNoteInput('');
-      setNoteDateTime('');
-    }
-  };
+  // const handleAddNote = () => {
+  //   if (noteInput) {
+  //     let formattedTimestamp = "";
+  //
+  //     if (noteDateTime) {
+  //       const dateObj = new Date(noteDateTime);
+  //
+  //       // Check if the date object is valid
+  //       if (!isNaN(dateObj.getTime())) {
+  //         formattedTimestamp = dateObj.toLocaleString();
+  //       } else {
+  //         console.log("Invalid datetime input"); // Debug log
+  //         formattedTimestamp = "Invalid Date";
+  //       }
+  //     } else {
+  //       formattedTimestamp = new Date().toLocaleString(); // Default to current date and time
+  //     }
+  //
+  //     const newNote = {
+  //       text: noteInput,
+  //       timestamp: formattedTimestamp,
+  //     };
+  //
+  //     setNotes((prevNotes) => [...prevNotes, newNote]);
+  //     setNoteInput('');
+  //     setNoteDateTime('');
+  //   }
+  // };
 
   const handleDeleteNote = (index) => {
     const newNotes = notes.filter((_, i) => i !== index);
@@ -130,28 +155,42 @@ function App() {
           <h2>Welcome, {username}!</h2>
           <div className="settings">
             <select value={font} onChange={handleFontChange}>
-              <option value="Montserrat">Montserrat</option>
+            <option value="Montserrat">Montserrat</option>
               <option value="Arial">Arial</option>
               <option value="Times New Roman">Times New Roman</option>
+              <option value="Courier New">Courier New</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Verdana">Verdana</option>
+              <option value="Trebuchet MS">Trebuchet MS</option>
+              <option value="Comic Sans MS">Comic Sans MS</option>
+              <option value="Tahoma">Tahoma</option>
+              <option value="Impact">Impact</option>
             </select>
           </div>
           <div className="input-container">
-            <input
-              type="text"
-              value={noteInput}
-              onChange={(e) => setNoteInput(e.target.value)}
-              placeholder="Add a new note"
-            />
-            <input
-              type="datetime-local"
-              value={noteDateTime}
-              onChange={(e) => {
-                setNoteDateTime(e.target.value);
-                //console.log("Selected datetime:", e.target.value); // Debug log
-              }}
-            />
-            <button onClick={handleAddNote}>Add Note</button>
-          </div>
+<input
+type="text"
+value={noteInput}
+onChange={(e) => setNoteInput(e.target.value)}
+placeholder="Add a new note"
+/>
+<input
+type="date"
+value={noteDate}
+onChange={(e) => setNoteDate(e.target.value)}
+placeholder="Select date"
+/>
+<input
+type="time"
+value={noteTime}
+onChange={(e) => setNoteTime(e.target.value)}
+placeholder="Select time"
+/>
+<button onClick={handleAddNote}>Add Note</button>
+</div>
+
+
+
           <ul>
             {notes.map((note, index) => (
               <li key={index}>
