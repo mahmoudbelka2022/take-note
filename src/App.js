@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 
 function App() {
@@ -184,37 +182,26 @@ if (noteInput) {
           </div>
           <div className="input-container">
 <input
-  type="text"
-  value={noteInput}
-  onChange={(e) => setNoteInput(e.target.value)}
-  placeholder="Add a new note"
+type="text"
+value={noteInput}
+onChange={(e) => setNoteInput(e.target.value)}
+placeholder="Add a new note"
 />
 
-{/* Date Picker */}
-<DatePicker
-  selected={noteDate ? new Date(noteDate) : null}
-  onChange={(date) => setNoteDate(date.toISOString().split('T')[0])} // Set date in YYYY-MM-DD format
-  placeholderText="Select date"
-  dateFormat="yyyy-MM-dd"
-  isClearable
-  showPopperArrow={false}
-  className="datepicker"
-/>
-
-{/* Time Input */}
 <input
-  type="time"
-  value={noteTime}
-  onChange={(e) => setNoteTime(e.target.value)}
-  placeholder="Select time"
+type="date"
+value={noteDate}
+onChange={(e) => setNoteDate(e.target.value)}
+placeholder="Select date"
 />
-<button type="button" onClick={setCurrentTimeNow}>
-  Click here for time
-</button>
-
+<input
+type="time"
+value={noteTime}
+onChange={(e) => setNoteTime(e.target.value)}
+placeholder="Select time"
+/>
 <button onClick={handleAddNote}>Add Note</button>
 </div>
-
 
 
 
