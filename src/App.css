@@ -113,3 +113,14 @@ input[type="datetime-local"] {
   font-size: 16px; /* Make it larger for mobile */
   width: 100%; /* Full width to ensure it fits within the viewport */
 }
+
+.input-container input {
+  width: 100%; /* Make inputs full width on smaller screens */
+  padding: 10px;
+  margin: 5px 0;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.datepicker {
+  width: 100%;
+}

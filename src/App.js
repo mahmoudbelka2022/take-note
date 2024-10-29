@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 function App() {
   const [username, setUsername] = useState('');
@@ -34,6 +37,18 @@ function App() {
 
    return () => clearInterval(interval); // Cleanup the interval on unmount
  }, []);
+
+ // Function to set the current date
+  const setCurrentDate = () => {
+    const today = new Date().toISOString().split('T')[0]; // Format to YYYY-MM-DD
+    setNoteDate(today);
+  };
+
+  // Function to set the current time
+  const setCurrentTimeNow = () => {
+    const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Format to HH:MM
+    setNoteTime(now);
+  };
 
   // Load notes when username is set
   useEffect(() => {
@@ -169,25 +184,37 @@ if (noteInput) {
           </div>
           <div className="input-container">
 <input
-type="text"
-value={noteInput}
-onChange={(e) => setNoteInput(e.target.value)}
-placeholder="Add a new note"
+  type="text"
+  value={noteInput}
+  onChange={(e) => setNoteInput(e.target.value)}
+  placeholder="Add a new note"
 />
+
+{/* Date Picker */}
+<DatePicker
+  selected={noteDate ? new Date(noteDate) : null}
+  onChange={(date) => setNoteDate(date.toISOString().split('T')[0])} // Set date in YYYY-MM-DD format
+  placeholderText="Select date"
+  dateFormat="yyyy-MM-dd"
+  isClearable
+  showPopperArrow={false}
+  className="datepicker"
+/>
+
+{/* Time Input */}
 <input
-type="date"
-value={noteDate}
-onChange={(e) => setNoteDate(e.target.value)}
-placeholder="Select date"
+  type="time"
+  value={noteTime}
+  onChange={(e) => setNoteTime(e.target.value)}
+  placeholder="Select time"
 />
-<input
-type="time"
-value={noteTime}
-onChange={(e) => setNoteTime(e.target.value)}
-placeholder="Select time"
-/>
+<button type="button" onClick={setCurrentTimeNow}>
+  Click here for time
+</button>
+
 <button onClick={handleAddNote}>Add Note</button>
 </div>
+
 
 
 
